@@ -43,6 +43,10 @@
   --color-backdrop: rgb(0 0 0 / 0.7);
 
   --animate-card-in: card-in 500ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  --animate-loader-mark: loader-mark 600ms cubic-bezier(0.22, 1, 0.36, 1)
+    backwards;
+  --animate-loader-fill: loader-fill 1400ms cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
 
   /*
    * ใช้ fill-mode backwards ไม่ใช่ both เพราะ both จะคง transform ของเฟรมสุดท้าย
@@ -56,6 +60,26 @@
     to {
       opacity: 1;
       transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes loader-mark {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes loader-fill {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
     }
   }
 }
@@ -205,8 +229,42 @@
   }
 }
 
+/*
+ * วงกลมขยายจากจุดที่กดสวิตช์ธีม ใช้ View Transitions API
+ * ปิด crossfade เริ่มต้นของ browser เพราะถ้าเฟดทั้งหน้าตัวอักษรจะทับกันดูขุ่น
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+  animation: theme-reveal 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--theme-x, 90%) var(--theme-y, 2rem));
+  }
+  to {
+    clip-path: circle(
+      var(--theme-radius, 150vmax) at var(--theme-x, 90%) var(--theme-y, 2rem)
+    );
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-card-in {
+  .animate-card-in,
+  .animate-loader-mark,
+  .animate-loader-fill,
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
     animation: none;
   }
 

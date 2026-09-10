@@ -1,10 +1,13 @@
 import { hero } from '../../data/profile'
+import useIntroReady from '../../hooks/useIntroReady'
 import Button from '../ui/Button'
 import Photo from '../ui/Photo'
 import Section from '../layout/Section'
 import SocialRail from '../layout/SocialRail'
 
 export default function HomeSection() {
+  const introReady = useIntroReady()
+
   return (
     <Section id="home" title="หน้าแรก" className="overflow-hidden">
       <div aria-hidden="true" className="absolute inset-0 -z-10">
@@ -23,7 +26,9 @@ export default function HomeSection() {
       </div>
 
       <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-4 pt-28 pb-16 sm:px-6 lg:px-10">
-        <div className="animate-card-in max-w-2xl">
+        <div
+          className={`max-w-2xl ${introReady ? 'animate-card-in' : 'opacity-0'}`}
+        >
           <p className="text-fg-subtle text-[11px] font-medium tracking-[0.22em] uppercase">
             {hero.status}
           </p>

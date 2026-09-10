@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { flushSync } from 'react-dom'
 
 export type Theme = 'light' | 'dark'
 
@@ -28,6 +29,32 @@ function storeTheme(theme: Theme) {
   }
 }
 
+function applyThemeToDocument(theme: Theme) {
+  document.documentElement.dataset.theme = theme
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', THEME_COLORS[theme])
+}
+
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
+/**
+ * จุดที่วงกลมขยายออกมา และรัศมีที่ต้องคลุมมุมจอที่ไกลที่สุด
+ * เก็บเป็น CSS variable ให้ keyframe clip-path อ่านตอนเล่น view transition
+ */
+function setRevealOrigin(x: number, y: number) {
+  const radius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y),
+  )
+  const root = document.documentElement
+  root.style.setProperty('--theme-x', `${x}px`)
+  root.style.setProperty('--theme-y', `${y}px`)
+  root.style.setProperty('--theme-radius', `${Math.ceil(radius)}px`)
+}
+
 /**
  * คุมธีมสว่าง/มืดผ่าน data-theme บน <html>
  *
@@ -41,10 +68,7 @@ export default function useTheme() {
   )
 
   useEffect(() => {
-    document.documentElement.dataset.theme = theme
-    document
-      .querySelector('meta[name="theme-color"]')
-      ?.setAttribute('content', THEME_COLORS[theme])
+    applyThemeToDocument(theme)
   }, [theme])
 
   useEffect(() => {
@@ -59,13 +83,33 @@ export default function useTheme() {
     return () => query.removeEventListener('change', handleChange)
   }, [])
 
-  const toggleTheme = useCallback(() => {
-    setTheme((current) => {
-      const next: Theme = current === 'dark' ? 'light' : 'dark'
-      storeTheme(next)
-      return next
-    })
-  }, [])
+  const toggleTheme = useCallback(
+    (origin?: { clientX: number; clientY: number }) => {
+      const next: Theme = theme === 'dark' ? 'light' : 'dark'
+
+      const apply = () => {
+        storeTheme(next)
+        applyThemeToDocument(next)
+        // ต้องวาดเฟรมใหม่ให้จบใน callback ของ view transition
+        // ไม่งั้น browser จะถ่าย snapshot ก่อน React อัปเดตสวิตช์
+        flushSync(() => setTheme(next))
+      }
+
+      if (
+        prefersReducedMotion() ||
+        typeof document.startViewTransition !== 'function'
+      ) {
+        apply()
+        return
+      }
+
+      const x = origin?.clientX ?? window.innerWidth - 40
+      const y = origin?.clientY ?? 32
+      setRevealOrigin(x, y)
+      document.startViewTransition(apply)
+    },
+    [theme],
+  )
 
   return { theme, toggleTheme }
 }

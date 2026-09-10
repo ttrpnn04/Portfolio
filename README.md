@@ -132,6 +132,9 @@ component จึงไม่เรียกสีดิบอย่าง `slate
   (สไตล์ที่ไม่อยู่ใน layer ชนะสไตล์ที่อยู่ใน layer ไม่เกี่ยวกับ specificity)
 - [useTheme.ts](src/hooks/useTheme.ts) คุม `data-theme` บน `<html>` จำค่าลง `localStorage`
   และอัปเดต `<meta name="theme-color">` ให้แถบเบราว์เซอร์บนมือถือเปลี่ยนตาม
+- **ตอนกดสวิตช์** ใช้ View Transitions API วาดวงกลมขยายจากจุดที่กดคลุมทั้งจอ
+  (`flushSync` ให้ React วาดสวิตช์จบในเฟรมเดียวกับที่ browser ถ่าย snapshot)
+  เบราว์เซอร์ที่ยังไม่มี API นี้หรือคนที่ปิด animation จะสลับทันที
 - **มี inline script ใน [index.html](index.html)** ตั้ง `data-theme` ตั้งแต่ก่อนวาดเฟรมแรก
   ไม่งั้นคนที่เลือกธีมสว่างไว้จะเห็นจอแวบดำก่อนแล้วค่อยเปลี่ยนเป็นขาวหลัง React โหลดเสร็จ
 - ถ้าผู้ใช้ยังไม่เคยกดปุ่มสลับ เว็บจะ **ตามการตั้งค่าของเครื่อง** ต่อไปเรื่อย ๆ แม้ผู้ใช้
@@ -159,14 +162,17 @@ src/
     links.ts                  เช็คว่า href ยังเป็น placeholder อยู่หรือไม่
   hooks/
     useActiveSection.ts       บอกว่ากำลังเลื่อนอยู่ที่ section ไหน
-    useTheme.ts               คุม data-theme บน <html> + จำค่าใน localStorage
+    useTheme.ts               คุม data-theme บน <html> + วงกลมขยายตอนสลับธีม
+    useIntroReady.ts          บอกว่า overlay โหลดเริ่มเฟดออกแล้วหรือยัง
   components/
     layout/
       NavBar.tsx              เมนู fixed + ไฮไลต์ active + เบอร์โทร + ปุ่มธีม
       Section.tsx             เปลือก section: min-h-dvh, scroll-mt, isolate
       SectionHeader.tsx       eyebrow + หัวข้อ
       SocialRail.tsx          แถวไอคอนโซเชียล
-      ThemeToggle.tsx         ปุ่มสลับธีมสว่าง/มืด
+      ThemeToggle.tsx         สวิตช์เลื่อนธีมสว่าง/มืด (role=switch)
+      IntroProvider.tsx       คุม overlay โหลด + ปลด inert ตอนเริ่มเฟดออก
+      PageLoader.tsx          จอโหลดตอนเข้าเว็บ (อักษรย่อ + แถบ progress)
       ContactFooter.tsx
     sections/
       HomeSection.tsx  AboutSection.tsx  ResumeSection.tsx
@@ -192,3 +198,6 @@ src/
 - **ฟอนต์ Noto Sans Thai** โหลดคู่กับ Inter และเพิ่ม line-height ของหัวข้อ ไม่ให้สระบน
   ของภาษาไทยถูกตัด
 - **ปุ่มและลิงก์ที่กดได้สูงอย่างน้อย 44px** (`min-h-11`) ตามขนาดพื้นที่แตะที่แนะนำบนมือถือ
+- **intro ตอนเข้าเว็บ** ใช้ overlay ทับทั้งจอประมาณ 1.6 วินาที แล้วเฟดออกพร้อมปลด
+  `inert` ของเนื้อหา เพื่อให้ `card-in` ของหน้าแรกวิ่งตอนที่ผู้ใช้มองเห็น ไม่ใช่เล่นจบ
+  ไปข้างหลังจอทึบ คนที่ตั้ง `prefers-reduced-motion` จะข้าม overlay ไปเลย
