@@ -4,13 +4,51 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#141721" />
+
+    <script>
+      // ตั้งธีมก่อนวาดเฟรมแรก ไม่งั้นคนที่เลือกธีมสว่างไว้จะเห็นจอแวบดำก่อน
+      // แล้วค่อยเปลี่ยนเป็นขาวหลัง React โหลดเสร็จ
+      ;(function () {
+        var theme = 'dark'
+        try {
+          var stored = localStorage.getItem('theme')
+          if (stored === 'light' || stored === 'dark') {
+            theme = stored
+          } else if (matchMedia('(prefers-color-scheme: light)').matches) {
+            theme = 'light'
+          }
+        } catch {
+          // โหมดส่วนตัวของบางเบราว์เซอร์ห้ามอ่าน localStorage — ใช้ธีมมืดไปก่อน
+          theme = 'dark'
+        }
+        document.documentElement.dataset.theme = theme
+      })()
+    </script>
+
     <title>[ชื่อของคุณ] — Junior Full-Stack Developer</title>
     <meta
       name="description"
       content="[Short intro 1-2 บรรทัด สำหรับ SEO / preview เวลาแชร์ลิงก์]"
     />
+
+    <!-- preview ตอนแชร์ลิงก์ใน LINE / Facebook / LinkedIn — แก้ url กับ image
+         ให้เป็นของจริงหลัง deploy ไม่งั้นจะขึ้นเป็นการ์ดเปล่า -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="[ชื่อของคุณ] — Junior Full-Stack Developer"
+    />
+    <meta
+      property="og:description"
+      content="[Short intro 1-2 บรรทัด สำหรับ SEO / preview เวลาแชร์ลิงก์]"
+    />
+    <meta property="og:url" content="[https://โดเมนของคุณ]" />
+    <meta property="og:image" content="[https://โดเมนของคุณ/og-image.png]" />
+    <meta property="og:locale" content="th_TH" />
+    <meta name="twitter:card" content="summary_large_image" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

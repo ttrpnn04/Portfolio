@@ -1,7 +1,15 @@
-import type { About, ContactLink, Hero } from '../types/content'
+import type {
+  About,
+  ContactLink,
+  Hero,
+  Hobby,
+  LanguageSkill,
+  SocialLink,
+} from '../types/content'
 
 export const hero: Hero = {
-  name: '[ชื่อ นามสกุล]',
+  firstName: '[ชื่อ]',
+  lastName: '[นามสกุล]',
   status: '[สถานะปัจจุบัน — เช่น นักศึกษาปี 4 วิทยาการคอมพิวเตอร์ฯ ม.ศรีปทุม]',
   headline: '[Career Headline — เช่น Junior Full-Stack Developer (C# + React)]',
   intro:
@@ -9,12 +17,17 @@ export const hero: Hero = {
     'เขียนให้ recruiter อ่านจบใน 10 วินาที และเน้นสิ่งที่ต่างจากนักศึกษาคนอื่น ' +
     'เช่น ระบบที่ทำแล้วมีคนใช้งานจริง ไม่ใช่แค่โปรเจกต์ส่งอาจารย์]',
   location: '[จังหวัด / รูปแบบงานที่รับ — เช่น กรุงเทพฯ · Onsite หรือ Hybrid]',
+  phone: '[08X-XXX-XXXX]',
   imageSrc: null,
-  imageAlt: '[คำอธิบายรูปโปรไฟล์ เช่น รูปโปรไฟล์ของ (ชื่อ)]',
+  imageAlt: '[ภาพโต๊ะทำงานหรือบรรยากาศตอนเขียนโค้ด สำหรับพื้นหลังหน้าแรก]',
   initials: 'AB',
 }
 
+export const fullName = `${hero.firstName} ${hero.lastName}`
+
 export const about: About = {
+  email: '[you@example.com]',
+  address: '[จังหวัด · เขต/อำเภอ — ใส่แค่ระดับที่เปิดเผยได้]',
   paragraphs: [
     '[ย่อหน้าที่ 1 — สนใจอะไร: อธิบายว่าอะไรทำให้คุณสนใจการเขียนโปรแกรม ' +
       'และตอนนี้กำลังสนใจเรื่องอะไรเป็นพิเศษ เช่น การออกแบบ database ' +
@@ -47,7 +60,36 @@ export const about: About = {
         '[อธิบายว่าคุณคุยกับผู้ใช้จริงและปรับระบบตาม feedback อย่างไร]',
     },
   ],
+  portraitSrc: null,
+  portraitAlt: '[รูปพอร์ตเทรตของคุณ แนวตั้ง พื้นหลังเข้ม]',
 }
+
+export const socialLinks: SocialLink[] = [
+  {
+    id: 'github',
+    icon: 'github',
+    label: 'GitHub',
+    href: '[https://github.com/username]',
+  },
+  {
+    id: 'linkedin',
+    icon: 'linkedin',
+    label: 'LinkedIn',
+    href: '[https://linkedin.com/in/username]',
+  },
+  {
+    id: 'facebook',
+    icon: 'facebook',
+    label: 'Facebook',
+    href: '[ลิงก์ Facebook ถ้ามี]',
+  },
+  {
+    id: 'email',
+    icon: 'email',
+    label: 'อีเมล',
+    href: 'mailto:[you@example.com]',
+  },
+]
 
 export const contactLinks: ContactLink[] = [
   {
@@ -84,3 +126,19 @@ export const contactLinks: ContactLink[] = [
 export const contactNote =
   '[ข้อความปิดท้าย 1-2 บรรทัด เช่น กำลังหางาน Junior Full-Stack Developer ' +
   'หรือตำแหน่งฝึกงาน เริ่มงานได้ตั้งแต่ (เดือน/ปี) — ยินดีพูดคุยครับ/ค่ะ]'
+
+export const languages: LanguageSkill[] = [
+  { name: 'ไทย', level: 5, note: '[ภาษาแม่]' },
+  {
+    name: 'English',
+    level: 3,
+    note: '[อ่านเอกสารเทคนิคได้ สื่อสารพื้นฐานได้]',
+  },
+]
+
+export const hobbies: Hobby[] = [
+  { id: 'side-project', icon: 'code', label: '[ทำ side project]' },
+  { id: 'reading', icon: 'book', label: '[อ่านบทความเทคนิค]' },
+  { id: 'gaming', icon: 'gamepad', label: '[เกม]' },
+  { id: 'travel', icon: 'plane', label: '[เที่ยว]' },
+]

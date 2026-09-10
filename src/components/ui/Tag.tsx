@@ -6,7 +6,7 @@ interface TagProps {
 }
 
 const toneClasses = {
-  neutral: 'border-line bg-white/[0.04] text-fg-muted',
+  neutral: 'border-line bg-fill text-fg-muted',
   brand: 'border-brand-500/40 bg-brand-500/12 text-brand-300',
 } as const
 

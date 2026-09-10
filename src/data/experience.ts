@@ -11,6 +11,7 @@ export const experience: ExperienceItem[] = [
   {
     id: 'internship-1',
     kind: 'internship',
+    badge: '[2025]',
     title: '[ตำแหน่งที่ฝึกงาน — เช่น Software Developer Intern]',
     organization: '[ชื่อบริษัท]',
     period: '[เดือน ปี – เดือน ปี]',
@@ -22,8 +23,21 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
+    id: 'activity-1',
+    kind: 'activity',
+    badge: '[2024]',
+    title: '[ชื่อกิจกรรม / การแข่งขัน / ค่ายอบรม]',
+    organization: '[หน่วยงานที่จัด]',
+    period: '[เดือน ปี]',
+    location: null,
+    bullets: [
+      '[บทบาทของคุณในกิจกรรม และผลลัพธ์ เช่น รางวัลหรือจำนวนผู้เข้าร่วม]',
+    ],
+  },
+  {
     id: 'education-1',
     kind: 'education',
+    badge: '[2022]',
     title:
       '[วุฒิและสาขา — เช่น วท.บ. วิทยาการคอมพิวเตอร์และนวัตกรรมการพัฒนาซอฟต์แวร์]',
     organization: '[ชื่อมหาวิทยาลัย / คณะ]',
@@ -35,15 +49,12 @@ export const experience: ExperienceItem[] = [
       '[ทุน/รางวัล/ผลงานวิชาการ ถ้ามี]',
     ],
   },
-  {
-    id: 'activity-1',
-    kind: 'activity',
-    title: '[ชื่อกิจกรรม / การแข่งขัน / ค่ายอบรม]',
-    organization: '[หน่วยงานที่จัด]',
-    period: '[เดือน ปี]',
-    location: null,
-    bullets: [
-      '[บทบาทของคุณในกิจกรรม และผลลัพธ์ เช่น รางวัลหรือจำนวนผู้เข้าร่วม]',
-    ],
-  },
 ]
+
+export const workExperience = experience.filter(
+  (item) => item.kind !== 'education',
+)
+
+export const educationExperience = experience.filter(
+  (item) => item.kind === 'education',
+)

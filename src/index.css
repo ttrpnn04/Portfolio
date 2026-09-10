@@ -3,7 +3,11 @@
 @theme {
   --font-sans: 'Inter', 'Noto Sans Thai', ui-sans-serif, system-ui, sans-serif;
 
-  /* ทุกสีไล่จาก hue เดียวกัน (265) ธีมจึงดูเป็นชุดเดียวกัน ไม่ใช่เทากลาง ๆ */
+  /*
+   * ค่าในบล็อกนี้คือ "ธีมมืด" ซึ่งเป็นค่าเริ่มต้น ส่วนธีมสว่างเขียนทับ token
+   * ชุดเดียวกันด้านล่าง component จึงไม่ต้องรู้เลยว่าตอนนี้อยู่ธีมไหน
+   * ทุกสีไล่จาก hue เดียวกัน (265) ธีมจึงดูเป็นชุดเดียวกัน ไม่ใช่เทากลาง ๆ
+   */
   --color-canvas: oklch(0.17 0.018 265);
   --color-surface: oklch(0.21 0.02 265);
   --color-surface-hover: oklch(0.25 0.022 265);
@@ -15,15 +19,28 @@
   --color-fg-muted: oklch(0.78 0.015 265);
   --color-fg-subtle: oklch(0.66 0.02 265);
 
-  /* บนพื้นมืดต้องใช้เฉดสว่างเป็นตัวอักษร ส่วน 600/700 ไว้เป็นพื้นปุ่ม */
+  /*
+   * 300/400 = ตัวอักษรสี brand (400 คือตอน hover เข้มกว่าเสมอ)
+   * 500 = เส้นขอบ ไล่สี และเงาเรืองแสง ไม่เคยใช้เป็นตัวอักษร
+   * 600/700 = พื้นปุ่มทึบที่มีตัวอักษรขาวทับ จึงต้องเข้มพอให้ผ่าน WCAG AA
+   */
   --color-brand-300: oklch(0.82 0.09 258);
   --color-brand-400: oklch(0.74 0.13 258);
   --color-brand-500: oklch(0.66 0.16 258);
-  --color-brand-600: oklch(0.58 0.18 258);
-  --color-brand-700: oklch(0.5 0.17 258);
+  --color-brand-600: oklch(0.5 0.19 258);
+  --color-brand-700: oklch(0.43 0.17 258);
 
   --color-accent-400: oklch(0.75 0.13 300);
   --color-accent-500: oklch(0.66 0.16 300);
+
+  /* สีเดียวใช้ได้ทั้งตัวอักษร เส้นขอบ และพื้นจาง ๆ ของป้าย "กิจกรรม" */
+  --color-warn: oklch(0.85 0.15 85);
+
+  /* พื้นยกระดับบาง ๆ บนการ์ด ธีมมืดใช้ขาวโปร่ง ธีมสว่างใช้ดำโปร่ง */
+  --color-fill: rgb(255 255 255 / 0.04);
+  --color-fill-hover: rgb(255 255 255 / 0.08);
+
+  --color-backdrop: rgb(0 0 0 / 0.7);
 
   --animate-card-in: card-in 500ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
 
@@ -41,6 +58,77 @@
       transform: translateY(0) scale(1);
     }
   }
+}
+
+/*
+ * เงาและไล่สีของการ์ดไม่ใช่ "สี" เดี่ยว ๆ จึงเก็บเป็นตัวแปรธรรมดานอก @theme
+ * แล้วให้ @utility ด้านล่างอ้างถึง เวลาสลับธีมจึงเปลี่ยนทั้งชุดพร้อมกัน
+ */
+:root {
+  /* แสงเรืองพื้นหลังหน้าเว็บ ธีมสว่างต้องจางกว่ามาก ไม่งั้นหน้าขาวจะดูขุ่น */
+  --page-glow-opacity: 0.6;
+
+  --card-tint-top: rgb(255 255 255 / 0.055);
+  --card-tint-bottom: rgb(255 255 255 / 0.015);
+  --card-shadow:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.07), 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --card-shadow-raised:
+    inset 0 1px 0 0 rgb(255 255 255 / 0.12), 0 18px 40px -16px rgb(0 0 0 / 0.8),
+    0 0 32px -12px color-mix(in oklab, var(--color-brand-500) 75%, transparent);
+  --shadow-overlay: 0 30px 80px -24px rgb(0 0 0 / 0.9);
+}
+
+/*
+ * ธีมสว่าง เลือกด้วย data-theme บน <html> ซึ่งถูกตั้งจาก inline script ใน
+ * index.html ตั้งแต่ก่อนวาดเฟรมแรก จอจึงไม่แวบดำก่อนแล้วค่อยเปลี่ยนเป็นขาว
+ *
+ * บล็อกนี้อยู่นอก @layer ใด ๆ จึงชนะ :root ที่ Tailwind สร้างจาก @theme
+ * (สไตล์ที่ไม่อยู่ใน layer ชนะสไตล์ที่อยู่ใน layer เสมอ ไม่เกี่ยวกับ specificity)
+ */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* พื้นหน้าเป็นเทาอ่อน ไม่ใช่ขาวสนิท การ์ดสีขาวจึงลอยขึ้นมาจากพื้นได้ */
+  --color-canvas: oklch(0.97 0.006 265);
+  --color-surface: oklch(1 0 0);
+  --color-surface-hover: oklch(0.985 0.004 265);
+
+  --color-line: oklch(0.9 0.012 265);
+  --color-line-strong: oklch(0.78 0.02 265);
+
+  --color-fg: oklch(0.22 0.02 265);
+  --color-fg-muted: oklch(0.38 0.02 265);
+  --color-fg-subtle: oklch(0.47 0.02 265);
+
+  /*
+   * บนพื้นสว่างต้องกลับด้าน: 300/400 ที่ใช้เป็นตัวอักษรกลายเป็นเฉดเข้ม
+   * ส่วน 500 ที่ใช้กับเส้นขอบและเงายังคงเป็นเฉดกลางเหมือนเดิม
+   */
+  --color-brand-300: oklch(0.45 0.17 258);
+  --color-brand-400: oklch(0.38 0.15 258);
+  --color-brand-500: oklch(0.6 0.18 258);
+
+  --color-accent-400: oklch(0.55 0.18 300);
+  --color-accent-500: oklch(0.62 0.19 300);
+
+  --color-warn: oklch(0.46 0.12 70);
+
+  --color-fill: rgb(19 23 38 / 0.035);
+  --color-fill-hover: rgb(19 23 38 / 0.07);
+
+  --color-backdrop: rgb(19 23 38 / 0.45);
+
+  --page-glow-opacity: 0.32;
+
+  /* ธีมสว่างไม่มีขอบไฮไลต์ด้านบนแล้ว ความหนาของการ์ดมาจากเงาล้วน ๆ */
+  --card-tint-top: rgb(255 255 255 / 1);
+  --card-tint-bottom: rgb(255 255 255 / 0.85);
+  --card-shadow:
+    0 1px 2px 0 rgb(19 23 38 / 0.06), 0 1px 1px -1px rgb(19 23 38 / 0.05);
+  --card-shadow-raised:
+    0 18px 40px -18px rgb(19 23 38 / 0.22),
+    0 0 28px -14px color-mix(in oklab, var(--color-brand-500) 45%, transparent);
+  --shadow-overlay: 0 30px 80px -28px rgb(19 23 38 / 0.3);
 }
 
 @layer base {
@@ -80,46 +168,14 @@
 @utility card-surface {
   background-image: linear-gradient(
     to bottom,
-    rgb(255 255 255 / 0.055),
-    rgb(255 255 255 / 0.015)
+    var(--card-tint-top),
+    var(--card-tint-bottom)
   );
-  box-shadow:
-    inset 0 1px 0 0 rgb(255 255 255 / 0.07),
-    0 1px 2px 0 rgb(0 0 0 / 0.4);
+  box-shadow: var(--card-shadow);
 }
 
 @utility card-raise {
-  box-shadow:
-    inset 0 1px 0 0 rgb(255 255 255 / 0.12),
-    0 18px 40px -16px rgb(0 0 0 / 0.8),
-    0 0 32px -12px color-mix(in oklab, var(--color-brand-500) 75%, transparent);
-}
-
-/*
- * ไฟส่องตามเมาส์ ตำแหน่งมาจาก custom property ที่อัปเดตใน onPointerMove
- * z-index -1 ทำให้ชั้นนี้อยู่เหนือพื้นการ์ดแต่ยังอยู่ใต้ตัวอักษร ตัวการ์ดจึงต้อง
- * มี isolate กันไม่ให้หลุดไปอยู่หลังพื้นหลังหน้า
- */
-@utility card-spotlight {
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 250ms ease-out;
-    background: radial-gradient(
-      320px circle at var(--spotlight-x, 50%) var(--spotlight-y, 0%),
-      color-mix(in oklab, var(--color-brand-400) 16%, transparent),
-      transparent 68%
-    );
-  }
-
-  &:hover::before {
-    opacity: 1;
-  }
+  box-shadow: var(--card-shadow-raised);
 }
 
 @utility grid-pattern {
@@ -152,5 +208,13 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-card-in {
     animation: none;
+  }
+
+  /*
+   * คลาส scroll-smooth บน <html> ไม่สนใจ prefers-reduced-motion เอง
+   * ต้องปิดตรงนี้ ไม่งั้นคนที่ตั้งค่าปิด animation จะโดนหน้าไถลตอนกดเมนู
+   */
+  html {
+    scroll-behavior: auto;
   }
 }

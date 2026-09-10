@@ -1,7 +1,7 @@
 import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 
-interface CardModalProps {
+interface ModalProps {
   label: string
   isOpen: boolean
   onClose: () => void
@@ -12,12 +12,12 @@ interface CardModalProps {
  * ใช้ <dialog> ของ browser เพื่อได้ Escape, focus trap และ backdrop มาฟรี
  * ตอนปิดอยู่ dialog เป็น display:none จึงไม่ติดลำดับ tab
  */
-export default function CardModal({
+export default function Modal({
   label,
   isOpen,
   onClose,
   children,
-}: CardModalProps) {
+}: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -44,21 +44,20 @@ export default function CardModal({
     if (event.target === dialogRef.current) onClose()
   }
 
-  // portal ออกไป body เพื่อไม่ให้ dialog เป็นลูกของ grid ในเชิงโครงสร้าง
   return createPortal(
     <dialog
       ref={dialogRef}
       aria-label={label}
       onClose={onClose}
       onClick={handleClick}
-      className="border-line bg-canvas/95 text-fg-muted scrollbar-subtle m-auto max-h-[85dvh] w-[min(32rem,calc(100vw-1.5rem))] scale-100 overflow-y-auto rounded-2xl border p-0 opacity-100 shadow-[0_30px_80px_-24px_rgb(0_0_0/0.9)] backdrop-blur-xl transition duration-200 ease-out backdrop:bg-black/70 backdrop:backdrop-blur-sm motion-reduce:transition-none starting:open:scale-95 starting:open:opacity-0"
+      className="border-line bg-canvas/95 text-fg-muted scrollbar-subtle backdrop:bg-backdrop m-auto max-h-[85dvh] w-[min(40rem,calc(100vw-1.5rem))] scale-100 overflow-y-auto rounded-2xl border p-0 opacity-100 shadow-[var(--shadow-overlay)] backdrop-blur-xl transition duration-200 ease-out backdrop:backdrop-blur-sm motion-reduce:transition-none starting:open:scale-95 starting:open:opacity-0"
     >
-      <div className="from-canvas via-canvas sticky top-0 flex justify-end bg-gradient-to-b to-transparent pt-3 pr-3 pb-1">
+      <div className="from-canvas via-canvas sticky top-0 z-10 flex justify-end bg-gradient-to-b to-transparent pt-3 pr-3 pb-1">
         <button
           type="button"
           onClick={onClose}
           aria-label="ปิด"
-          className="text-fg-subtle hover:text-fg inline-flex size-11 items-center justify-center rounded-full transition-colors hover:bg-white/10"
+          className="text-fg-subtle hover:text-fg hover:bg-fill-hover inline-flex size-11 items-center justify-center rounded-full transition-colors motion-reduce:transition-none"
         >
           <svg
             className="size-5"
@@ -73,7 +72,7 @@ export default function CardModal({
           </svg>
         </button>
       </div>
-      <div className="px-5 pt-1 pb-6">{children}</div>
+      <div className="px-5 pt-1 pb-6 sm:px-7">{children}</div>
     </dialog>,
     document.body,
   )
