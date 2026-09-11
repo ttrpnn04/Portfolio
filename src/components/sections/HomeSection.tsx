@@ -29,7 +29,7 @@ export default function HomeSection() {
         <div
           className={`max-w-2xl ${introReady ? 'animate-card-in' : 'opacity-0'}`}
         >
-          <p className="text-fg-subtle text-[11px] font-medium tracking-[0.22em] uppercase">
+          <p className="text-fg-subtle text-xs font-medium tracking-[0.22em] uppercase">
             {hero.status}
           </p>
 
@@ -63,7 +63,7 @@ export default function HomeSection() {
 
       <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between gap-4 px-4 pb-10 sm:px-6 lg:px-10">
         <SocialRail />
-        <p className="text-fg-subtle text-[11px]">{hero.location}</p>
+        <p className="text-fg-subtle text-xs">{hero.location}</p>
       </div>
     </Section>
   )

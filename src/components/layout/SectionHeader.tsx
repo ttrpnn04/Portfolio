@@ -14,7 +14,7 @@ export default function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div>
-      <p className="text-brand-300 text-[11px] font-semibold tracking-[0.3em] uppercase">
+      <p className="text-brand-300 text-xs font-semibold tracking-[0.3em] uppercase">
         {eyebrow}
       </p>
       <h2 className="text-fg mt-2 text-3xl font-bold tracking-tight sm:text-4xl">

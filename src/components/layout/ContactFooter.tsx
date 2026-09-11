@@ -9,7 +9,7 @@ export default function ContactFooter() {
   return (
     <footer className="border-line/60 border-t">
       <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-10">
-        <p className="text-brand-300 text-[11px] font-semibold tracking-[0.3em] uppercase">
+        <p className="text-brand-300 text-xs font-semibold tracking-[0.3em] uppercase">
           Contact
         </p>
         <h2 className="text-fg mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
@@ -19,7 +19,7 @@ export default function ContactFooter() {
           {contactNote}
         </p>
 
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {contactLinks.map((link) => {
             const toneClasses = link.primary
               ? 'border-brand-500 bg-brand-600 text-white'
@@ -33,12 +33,12 @@ export default function ContactFooter() {
                     {link.label}
                   </span>
                   {/*
-                   * ไม่ลดความทึบของตัวอักษรขาวบนพื้นปุ่ม เพราะแค่ 11px
+                   * ไม่ลดความทึบของตัวอักษรขาวบนพื้นปุ่ม เพราะแค่ 13.5px
                    * ที่ opacity 85% ก็ตกเกณฑ์ contrast แล้ว ใช้น้ำหนักฟอนต์
                    * แยกลำดับความสำคัญแทน
                    */}
                   <span
-                    className={`block truncate text-[11px] ${
+                    className={`block truncate text-xs ${
                       link.primary ? 'text-white' : 'text-fg-subtle'
                     }`}
                   >
@@ -75,7 +75,7 @@ export default function ContactFooter() {
           })}
         </ul>
 
-        <p className="text-fg-subtle mt-12 text-[11px]">
+        <p className="text-fg-subtle mt-12 text-xs">
           &copy; {new Date().getFullYear()} {fullName}
         </p>
       </div>

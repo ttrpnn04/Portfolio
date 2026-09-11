@@ -34,7 +34,7 @@ export default function Photo({
         className="grid-pattern absolute inset-0 opacity-[0.12]"
       />
       {showCaption && (
-        <span className="text-fg-subtle relative flex max-w-xs flex-col items-center gap-2 px-4 text-center text-[11px] leading-relaxed">
+        <span className="text-fg-subtle relative flex max-w-xs flex-col items-center gap-2 px-4 text-center text-xs leading-relaxed">
           <Icon name="camera" className="size-6 opacity-70" />
           {alt}
         </span>

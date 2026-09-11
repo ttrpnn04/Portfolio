@@ -16,7 +16,7 @@ export default function TimelineEntry({ item }: TimelineEntryProps) {
     <li className="group relative flex gap-4 pb-7 last:pb-0">
       <div className="relative flex flex-col items-center">
         <span
-          className={`z-10 flex size-11 shrink-0 items-center justify-center rounded-full border px-1 text-center text-[10px] leading-tight font-semibold ${kindToneClasses[item.kind]}`}
+          className={`text-2xs z-10 flex size-11 shrink-0 items-center justify-center rounded-full border px-1 text-center leading-tight font-semibold ${kindToneClasses[item.kind]}`}
         >
           {item.badge}
         </span>
@@ -28,7 +28,7 @@ export default function TimelineEntry({ item }: TimelineEntryProps) {
       </div>
 
       <div className="min-w-0 pt-0.5 pb-1">
-        <p className="text-fg-subtle text-[10px] font-medium tracking-[0.14em] uppercase">
+        <p className="text-fg-subtle text-2xs font-medium tracking-[0.14em] uppercase">
           {experienceKindLabels[item.kind]} · {item.period}
         </p>
         <h4 className="text-fg mt-1 text-sm font-semibold">{item.title}</h4>

@@ -46,7 +46,7 @@ export default function ResumeSection() {
               <div className="mt-4 space-y-5">
                 {skillGroups.map((group) => (
                   <div key={group.id}>
-                    <p className="text-fg-subtle text-[11px] font-semibold">
+                    <p className="text-fg-subtle text-xs font-semibold">
                       {group.title}
                     </p>
                     <ul className="mt-2 space-y-2.5">
@@ -84,14 +84,16 @@ export default function ResumeSection() {
           </div>
 
           <div className="space-y-8">
-            <div>
-              <ColumnTitle>Experience</ColumnTitle>
-              <ol className="mt-5">
-                {workExperience.map((item) => (
-                  <TimelineEntry key={item.id} item={item} />
-                ))}
-              </ol>
-            </div>
+            {workExperience.length > 0 && (
+              <div>
+                <ColumnTitle>Experience</ColumnTitle>
+                <ol className="mt-5">
+                  {workExperience.map((item) => (
+                    <TimelineEntry key={item.id} item={item} />
+                  ))}
+                </ol>
+              </div>
+            )}
 
             <div>
               <ColumnTitle>Education</ColumnTitle>

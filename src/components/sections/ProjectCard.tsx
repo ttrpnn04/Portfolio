@@ -42,7 +42,7 @@ export default function ProjectCard({
       />
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <p className="text-brand-300 text-[10px] font-semibold tracking-[0.2em] uppercase">
+        <p className="text-brand-300 text-2xs font-semibold tracking-[0.2em] uppercase">
           {project.featured ? 'Featured Project' : 'Project'}
         </p>
 
@@ -56,7 +56,7 @@ export default function ProjectCard({
           {project.tagline}
         </p>
 
-        <div className="text-fg-subtle mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
+        <div className="text-fg-subtle mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs">
           <span>{project.period}</span>
           {project.status && (
             <>
@@ -71,7 +71,7 @@ export default function ProjectCard({
             <Chip key={tech}>{tech}</Chip>
           ))}
           {project.tech.length > visibleTech.length && (
-            <span className="text-fg-subtle text-[11px]">
+            <span className="text-fg-subtle text-xs">
               +{project.tech.length - visibleTech.length}
             </span>
           )}

@@ -7,7 +7,7 @@ interface ChipProps {
 /** ป้ายเล็กสำหรับหน้าการ์ด เล็กกว่า Tag ที่ใช้ในหน้ารายละเอียด */
 export default function Chip({ children }: ChipProps) {
   return (
-    <span className="border-line text-fg-muted bg-fill inline-flex items-center rounded border px-1.5 py-0.5 text-[11px]">
+    <span className="border-line text-fg-muted bg-fill inline-flex items-center rounded border px-1.5 py-0.5 text-xs">
       {children}
     </span>
   )

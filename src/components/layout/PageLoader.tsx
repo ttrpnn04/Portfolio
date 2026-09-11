@@ -81,7 +81,7 @@ export default function PageLoader({ onReveal }: PageLoaderProps) {
         <p className="text-fg text-5xl font-black tracking-[0.18em] sm:text-6xl">
           {hero.initials}
         </p>
-        <p className="text-fg-subtle mt-3 max-w-xs text-center text-[11px] font-medium tracking-[0.28em] uppercase">
+        <p className="text-fg-subtle mt-3 max-w-xs text-center text-xs font-medium tracking-[0.28em] uppercase">
           {hero.headline}
         </p>
 

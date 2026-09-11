@@ -13,7 +13,7 @@ export default function SkillBar({ name, level, note }: SkillBarProps) {
     <li>
       <div className="flex items-baseline justify-between gap-3">
         <span className="text-fg-muted min-w-0 text-xs">{name}</span>
-        <span className="text-fg-subtle shrink-0 text-[10px]">
+        <span className="text-fg-subtle text-2xs shrink-0">
           {note ?? skillLevelLabels[level]}
         </span>
       </div>

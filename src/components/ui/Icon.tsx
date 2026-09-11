@@ -70,6 +70,7 @@ const paths: Record<IconName, ReactNode> = {
       <circle cx="12" cy="13" r="4" />
     </>
   ),
+  dumbbell: <path d="M6 8v8M18 8v8M4 10v4M20 10v4M6 12h12" />,
 }
 
 interface IconProps {

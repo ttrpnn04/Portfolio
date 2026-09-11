@@ -53,7 +53,7 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
 
   return (
     <div>
-      <p className="text-brand-300 text-[11px] font-semibold tracking-[0.2em] uppercase">
+      <p className="text-brand-300 text-xs font-semibold tracking-[0.2em] uppercase">
         {project.featured ? 'Featured Project' : 'Project'}
       </p>
       <h3 className="text-fg mt-1 text-xl font-bold">{project.title}</h3>

@@ -19,6 +19,7 @@ export type IconName =
   | 'music'
   | 'plane'
   | 'camera'
+  | 'dumbbell'
 
 export interface Hero {
   /** แยกชื่อ-นามสกุลเพราะหน้าแรกวางคนละบรรทัดคนละน้ำหนักฟอนต์ */
