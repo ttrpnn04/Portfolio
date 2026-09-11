@@ -28,7 +28,7 @@ export default function ProjectCard({
      * ตัดโครงสร้างข้างในทิ้งหมดเหลือแค่ชื่อเดียว ปุ่มจริงอยู่ท้ายการ์ดแทน
      */
     <article
-      className={`card-surface border-line hover:border-brand-500/50 hover:card-raise group relative flex flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow,translate] duration-300 ease-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
+      className={`card-surface border-line hover:border-brand-500/50 hover:card-raise group relative flex cursor-pointer flex-col overflow-hidden rounded-2xl border transition-[border-color,box-shadow,translate] duration-300 ease-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${
         isWide ? 'md:grid md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]' : ''
       }`}
     >
@@ -92,7 +92,7 @@ export default function ProjectCard({
           <button
             type="button"
             onClick={onOpen}
-            className="text-brand-300 hover:text-brand-400 focus-visible:outline-brand-400 -mx-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
+            className="text-brand-300 hover:text-brand-400 focus-visible:outline-brand-400 -mx-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-sm font-semibold transition-colors after:absolute after:inset-0 after:z-10 after:content-[''] focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
           >
             ดูรายละเอียด
             <span className="sr-only">ของ {project.title}</span>

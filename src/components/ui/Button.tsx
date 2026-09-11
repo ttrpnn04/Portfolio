@@ -8,6 +8,8 @@ interface ButtonProps {
   pill?: boolean
   /** เปิดในแท็บใหม่ — ใช้กับลิงก์ภายนอกอย่าง GitHub หรือไฟล์ CV */
   external?: boolean
+  /** ชื่อไฟล์ตอนดาวน์โหลด ใช้กับ PDF */
+  download?: string
   className?: string
 }
 
@@ -28,6 +30,7 @@ export default function Button({
   variant = 'primary',
   pill = false,
   external = false,
+  download,
   className = '',
 }: ButtonProps) {
   return (
@@ -35,6 +38,7 @@ export default function Button({
       href={href}
       target={external ? '_blank' : undefined}
       rel={external ? 'noopener noreferrer' : undefined}
+      download={download}
       // min-h-11 = 44px ตามขนาดพื้นที่แตะที่แนะนำบนมือถือ
       className={`inline-flex min-h-11 items-center justify-center gap-2 px-6 text-sm font-semibold transition-colors motion-reduce:transition-none ${
         pill ? 'rounded-full' : 'rounded-lg'

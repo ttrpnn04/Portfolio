@@ -22,6 +22,7 @@ export type IconName =
   | 'dumbbell'
   | 'message'
   | 'utensils'
+  | 'bag'
 
 export interface Hero {
   /** แยกชื่อ-นามสกุลเพราะหน้าแรกวางคนละบรรทัดคนละน้ำหนักฟอนต์ */

@@ -12,11 +12,11 @@ export const hero: Hero = {
   lastName: 'Thienpromthong',
   status:
     'นักศึกษาปี 4 วิทยาการคอมพิวเตอร์และนวัตกรรมการพัฒนาซอฟต์แวร์ · ม.ศรีปทุม',
-  headline: 'Junior Full-Stack Developer (C# + React)',
+  headline: 'Full-Stack Developer · AI Engineer',
   intro:
-    'นักศึกษาวิทยาการคอมพิวเตอร์ที่ชอบสร้างระบบให้คนใช้งานจริง ไม่ใช่แค่ส่งอาจารย์ ' +
-    'มีประสบการณ์ทำเว็บจัดการสต็อกให้ธุรกิจครอบครัวด้วย ASP.NET Core และ SQL Server ' +
-    'ตั้งแต่ออกแบบฐานข้อมูลไปจนถึง deploy ขึ้น server ของร้าน',
+    'นักศึกษาชั้นปีที่ 4 สาขาวิทยาการคอมพิวเตอร์และนวัตกรรม มหาวิทยาลัยศรีปทุม ' +
+    'มีประสบการณ์ตรงในการพัฒนาและดูแลระบบจัดการสต็อกสินค้าที่ใช้งานจริงในภาคธุรกิจ ' +
+    'ถนัดทั้งฝั่ง Backend และ Frontend พร้อมสนใจศึกษาด้าน AI เชิงประยุกต์',
   location: 'กรุงเทพฯ · Onsite / Hybrid',
   phone: '092-479-9419',
   imageSrc: '/hero-desk.jpg',
@@ -30,15 +30,16 @@ export const about: About = {
   email: 'pigeonthienpromthong@gmail.com',
   address: 'กรุงเทพฯ · เขตบางเขน แขวงอนุสาวรีย์',
   paragraphs: [
-    'สนใจการเขียนโปรแกรมเพราะชอบเห็นปัญหารอบตัวกลายเป็นระบบที่ใช้งานได้จริง ' +
-      'ตอนนี้สนใจการออกแบบฐานข้อมูลและการนำระบบขึ้น production มากกว่าการทำหน้าเว็บอย่างเดียว ' +
-      'เพราะเคยเจอเองว่าโค้ดที่รันบนเครื่องตัวเองกับระบบที่คนอื่นใช้ทุกวันเป็นคนละเรื่องกัน',
-    'อยากเริ่มต้นในสาย Junior Full-Stack โดยเน้น C# กับ React เพราะทำทั้งสองฝั่งมาแล้วในโปรเจกต์จริง ' +
-      'ในปีแรก ๆ อยากเก่งขึ้นเรื่องออกแบบ API ให้ชัด และการดูแลระบบหลังขึ้นเซิร์ฟเวอร์ ' +
-      'ไม่ใช่แค่เขียนฟีเจอร์แล้วจบ',
+    'นักศึกษาชั้นปีที่ 4 สาขาวิทยาการคอมพิวเตอร์และนวัตกรรมการพัฒนาซอฟต์แวร์ มหาวิทยาลัยศรีปทุม ' +
+      'มีประสบการณ์ตรงในการพัฒนาและดูแลระบบจัดการสต็อกสินค้าที่ใช้งานจริงในภาคธุรกิจ ' +
+      'ถนัดทั้งฝั่ง Backend และ Frontend',
+    'สนใจศึกษาด้าน AI เชิงประยุกต์ด้วย อย่างผู้ช่วย RAG ' +
+      'กำลังมองหาโอกาสร่วมงานในตำแหน่ง Full-Stack Developer หรือ AI Engineer ' +
+      'เพื่อพัฒนาทักษะควบคู่ไปกับประสบการณ์ทำงานจริง',
   ],
   targetRoles: [
-    'Junior Full-Stack Developer',
+    'Full-Stack Developer',
+    'AI Engineer',
     'Backend Developer (.NET)',
     'Frontend Developer (React)',
     'Software Engineer Intern',
@@ -127,15 +128,15 @@ export const contactLinks: ContactLink[] = [
 ]
 
 export const contactNote =
-  'กำลังมองหาตำแหน่ง Junior Full-Stack Developer หรือฝึกงานด้าน .NET / React ' +
+  'กำลังมองหาตำแหน่ง Full-Stack Developer หรือ AI Engineer ' +
   'ตอนนี้เป็นนักศึกษาปี 4 ยินดีพูดคุยครับ'
 
 export const languages: LanguageSkill[] = [
-  { name: 'ไทย', level: 5, note: 'ภาษาแม่' },
+  { name: 'ไทย', level: 5, note: 'เจ้าของภาษา' },
   {
     name: 'English',
     level: 4,
-    note: 'สื่อสารในชีวิตประจำวันได้',
+    note: 'ระดับทำงาน',
   },
 ]
 

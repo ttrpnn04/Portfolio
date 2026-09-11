@@ -13,6 +13,7 @@ import {
 import type { SkillList } from '../../types/content'
 import Section from '../layout/Section'
 import SectionHeader from '../layout/SectionHeader'
+import Button from '../ui/Button'
 import ColumnTitle from '../ui/ColumnTitle'
 import Icon from '../ui/Icon'
 import SkillBar from '../ui/SkillBar'
@@ -40,7 +41,15 @@ export default function ResumeSection() {
   return (
     <Section id="resume" title="เรซูเม่" className="justify-center">
       <div className="mx-auto w-full max-w-7xl px-4 pt-24 pb-20 sm:px-6 lg:px-10">
-        <SectionHeader eyebrow="Resume" title="ทักษะและประสบการณ์" />
+        <SectionHeader eyebrow="Resume" title="ทักษะและประสบการณ์">
+          <Button
+            href="/cv.pdf"
+            variant="outline"
+            download="Teeraphan-Thienpromthong-CV.pdf"
+          >
+            Download CV
+          </Button>
+        </SectionHeader>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-3 lg:gap-x-12">
           <div className="space-y-8">

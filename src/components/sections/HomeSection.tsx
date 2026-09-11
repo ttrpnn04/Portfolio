@@ -51,6 +51,14 @@ export default function HomeSection() {
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
+            <Button
+              href="/cv.pdf"
+              variant="primary"
+              pill
+              download="Teeraphan-Thienpromthong-CV.pdf"
+            >
+              Download CV
+            </Button>
             <Button href="#resume" variant="outline" pill>
               Resume
             </Button>

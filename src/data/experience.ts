@@ -10,6 +10,7 @@ export const experienceKindLabels: Record<ExperienceKind, string> = {
 
 const projectBadges: Record<string, string> = {
   bapsm: '2026',
+  kidbike: '3/2',
   'mr-pingo': '3/2',
   'smart-campus': '3/1',
 }
