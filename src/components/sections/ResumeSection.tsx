@@ -1,4 +1,8 @@
-import { educationExperience, workExperience } from '../../data/experience'
+import {
+  educationExperience,
+  projectExperience,
+  workExperience,
+} from '../../data/experience'
 import { hobbies, languages } from '../../data/profile'
 import {
   capabilities,
@@ -94,6 +98,19 @@ export default function ResumeSection() {
               </div>
             )}
 
+            {projectExperience.length > 0 && (
+              <div>
+                <ColumnTitle>Projects</ColumnTitle>
+                <ol className="mt-5">
+                  {projectExperience.map((item) => (
+                    <TimelineEntry key={item.id} item={item} />
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-8">
             <div>
               <ColumnTitle>Education</ColumnTitle>
               <ol className="mt-5">
@@ -102,9 +119,7 @@ export default function ResumeSection() {
                 ))}
               </ol>
             </div>
-          </div>
 
-          <div className="space-y-8">
             <div>
               <ColumnTitle>{capabilities.title}</ColumnTitle>
               <BulletList list={capabilities} />

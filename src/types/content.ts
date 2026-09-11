@@ -130,7 +130,7 @@ export interface Project {
   screenshots: ProjectScreenshot[]
 }
 
-export type ExperienceKind = 'education' | 'internship' | 'activity'
+export type ExperienceKind = 'education' | 'internship' | 'activity' | 'project'
 
 export interface ExperienceItem {
   id: string

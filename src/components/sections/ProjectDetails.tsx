@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { isUsableHref } from '../../lib/links'
 import type { Project } from '../../types/content'
 import Icon from '../ui/Icon'
+import ScreenshotLightbox from '../ui/ScreenshotLightbox'
 import Tag from '../ui/Tag'
 
 interface DetailBlockProps {
@@ -50,6 +52,7 @@ interface ProjectDetailsProps {
 
 export default function ProjectDetails({ project }: ProjectDetailsProps) {
   const usableLinks = project.links.filter((link) => isUsableHref(link.href))
+  const [viewerIndex, setViewerIndex] = useState<number | null>(null)
 
   return (
     <div>
@@ -79,16 +82,29 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               Screenshots
             </h4>
             <ul className="mt-2 grid gap-2 sm:grid-cols-2">
-              {project.screenshots.map((shot) => (
+              {project.screenshots.map((shot, index) => (
                 <li key={shot.src}>
-                  <img
-                    src={shot.src}
-                    alt={shot.alt}
-                    className="border-line w-full rounded-lg border object-cover object-top"
-                  />
+                  <button
+                    type="button"
+                    onClick={() => setViewerIndex(index)}
+                    className="border-line hover:border-brand-500/50 focus-visible:outline-brand-400 group relative block w-full cursor-zoom-in overflow-hidden rounded-lg border transition-[border-color] focus-visible:outline-2 focus-visible:outline-offset-2"
+                  >
+                    <img
+                      src={shot.src}
+                      alt=""
+                      className="w-full object-cover object-top transition-[filter] duration-200 group-hover:brightness-110 motion-reduce:transition-none"
+                    />
+                    <span className="sr-only">ดูรูปขนาดใหญ่: {shot.alt}</span>
+                  </button>
                 </li>
               ))}
             </ul>
+            <ScreenshotLightbox
+              shots={project.screenshots}
+              index={viewerIndex}
+              onClose={() => setViewerIndex(null)}
+              onIndexChange={setViewerIndex}
+            />
           </div>
         )}
 

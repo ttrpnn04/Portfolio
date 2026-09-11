@@ -5,7 +5,7 @@ export const projects: Project[] = [
     id: 'bapsm',
     title: 'BAPSM (BAPStockManagement)',
     tagline: 'เว็บจัดการสต็อกสินค้าให้ร้านจักรยานและอุปกรณ์กีฬาของครอบครัว',
-    period: '2025 – ปัจจุบัน',
+    period: '2026 – ปัจจุบัน',
     status: 'ใช้งานจริง',
     featured: true,
     problem:
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     title: 'Mr.Pingo – ระบบแนะแนวอาชีพ IT ด้วย RAG',
     tagline:
       'เพนกวินผู้ช่วยสนทนาที่แนะนำสายงาน IT โดยบังคับให้ LLM ตอบจากคลังข้อมูลที่ค้นคืนได้เท่านั้น',
-    period: '2026',
+    period: 'ปี 3 เทอม 2',
     status: 'โปรเจกต์ทดลอง',
     featured: false,
     problem:
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     title: 'Smart Campus Ordering System',
     tagline:
       'เว็บสั่งอาหารและสินค้าจากร้านในมหาวิทยาลัย แยกมุมมองนักศึกษา ร้านค้า และแอดมิน',
-    period: 'ระหว่างเรียน',
+    period: 'ปี 3 เทอม 1',
     status: 'โปรเจกต์เรียน',
     featured: false,
     problem:

@@ -5,6 +5,7 @@ const kindToneClasses: Record<ExperienceItem['kind'], string> = {
   education: 'border-line-strong bg-fill text-fg-muted',
   internship: 'border-brand-500/50 bg-brand-500/12 text-brand-300',
   activity: 'border-warn/40 bg-warn/12 text-warn',
+  project: 'border-brand-500/50 bg-brand-500/12 text-brand-300',
 }
 
 interface TimelineEntryProps {
