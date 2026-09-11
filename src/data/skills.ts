@@ -22,7 +22,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'SQL', level: 4 },
       { name: 'JavaScript', level: 3 },
       { name: 'TypeScript', level: 3 },
-      { name: 'Python', level: 2 },
+      { name: 'Python', level: 3 },
     ],
   },
   {
@@ -33,6 +33,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'ASP.NET Core MVC', level: 4 },
       { name: 'Entity Framework Core', level: 4 },
       { name: 'React', level: 3 },
+      { name: 'Node.js / Express', level: 3 },
       { name: 'Tailwind CSS', level: 3 },
     ],
   },
@@ -42,6 +43,7 @@ export const skillGroups: SkillGroup[] = [
     caption: 'ฐานข้อมูลที่ออกแบบและใช้งานเองได้',
     items: [
       { name: 'SQL Server', level: 4 },
+      { name: 'MongoDB', level: 3 },
       { name: 'Database design', level: 3 },
       { name: 'T-SQL', level: 3 },
     ],
@@ -55,6 +57,7 @@ export const skillGroups: SkillGroup[] = [
       { name: 'Visual Studio', level: 4 },
       { name: 'NSSM / Windows Service', level: 3 },
       { name: 'Tailscale', level: 3 },
+      { name: 'RAG & LLM', level: 2 },
     ],
   },
 ]
@@ -74,11 +77,13 @@ export const capabilities: SkillList = {
   id: 'capabilities',
   title: 'What can I do?',
   items: [
-    'ออกแบบ database schema ตั้งแต่ต้น',
-    'เขียน REST API / MVC controller',
-    'ทำหน้าเว็บด้วย React + TypeScript',
-    'ทำระบบ login และจัดการสิทธิ์ผู้ใช้',
-    'deploy ระบบขึ้น server จริง',
+    'ออกแบบ database schema ตั้งแต่ต้น แล้วต่อกับ EF Core หรือ MongoDB ได้',
+    'เขียน REST API และ MVC controller ฝั่ง ASP.NET Core',
+    'ทำหน้าเว็บด้วย React จัด layout ด้วย Tailwind CSS',
+    'ทำระบบ login และจัดการสิทธิ์ผู้ใช้ด้วย ASP.NET Identity',
+    'deploy ขึ้น Windows Server ผ่าน NSSM และเปิดเข้าจากนอกสถานที่ด้วย Tailscale',
+    'ทำแชทบอท RAG ที่ค้นคืนจาก vector database แล้วบังคับให้ LLM ตอบจากคลังข้อมูล',
+    'คุยเก็บความต้องการจากผู้ใช้ที่ไม่ใช่สายเทค แล้วแปลงเป็นฟีเจอร์ที่ใช้จริงได้',
   ],
 }
 
@@ -86,8 +91,11 @@ export const workingStyle: SkillList = {
   id: 'working-style',
   title: 'Working Style',
   items: [
-    'เขียนโค้ดให้คนอื่นอ่านต่อได้',
-    'แตกงานเป็นชิ้นเล็กแล้วส่งบ่อย',
-    'จดบันทึกปัญหาที่เจอไว้เสมอ',
+    'เขียนโค้ดให้คนอื่นอ่านต่อได้ ไม่เก็บ logic ไว้ในหัวตัวเอง',
+    'แตกงานเป็นชิ้นเล็ก แล้วส่งให้เห็นความคืบหน้าบ่อย ๆ',
+    'จดบันทึกบั๊กและวิธีแก้ไว้ เพื่อไม่ให้ติดที่เดิมซ้ำ',
+    'ลองไล่แก้เองก่อนถาม แต่ถ้าติดจริงจะถามให้ครบบริบท',
+    'คุยกับผู้ใช้ก่อนลงมือ ไม่อยากทำฟีเจอร์ที่ไม่มีคนใช้',
+    'ถือว่างานยังไม่จบจนกว่าระบบจะรันบนเครื่องคนอื่นได้',
   ],
 }

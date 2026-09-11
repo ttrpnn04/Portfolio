@@ -96,6 +96,14 @@ export const socialLinks: SocialLink[] = [
 
 export const contactLinks: ContactLink[] = [
   {
+    id: 'cv',
+    icon: 'document',
+    label: 'Résumé / CV',
+    value: 'ไฟล์ PDF 1 หน้า',
+    href: '/cv.pdf',
+    primary: true,
+  },
+  {
     id: 'github',
     icon: 'github',
     label: 'GitHub',
@@ -115,7 +123,6 @@ export const contactLinks: ContactLink[] = [
     label: 'Email',
     value: 'pigeonthienpromthong@gmail.com',
     href: 'mailto:pigeonthienpromthong@gmail.com',
-    primary: true,
   },
 ]
 
@@ -133,8 +140,28 @@ export const languages: LanguageSkill[] = [
 ]
 
 export const hobbies: Hobby[] = [
-  { id: 'exercise', icon: 'dumbbell', label: 'ออกกำลังกาย' },
-  { id: 'music', icon: 'music', label: 'ฟังเพลง' },
-  { id: 'gaming', icon: 'gamepad', label: 'เล่นเกม' },
-  { id: 'news', icon: 'book', label: 'อ่านข่าวสารประจำวัน' },
+  {
+    id: 'exercise',
+    icon: 'dumbbell',
+    label: 'ออกกำลังกาย',
+    note: 'ออกเป็นประจำเพื่อเคลียร์หัว ก่อนกลับมาเขียนโค้ดต่อ',
+  },
+  {
+    id: 'music',
+    icon: 'music',
+    label: 'ฟังเพลง',
+    note: 'เปิดตอนนั่งทำงานและตอนเดินทาง',
+  },
+  {
+    id: 'gaming',
+    icon: 'gamepad',
+    label: 'เล่นเกม',
+    note: 'พักสมองหลังนั่งจอมาทั้งวัน',
+  },
+  {
+    id: 'news',
+    icon: 'book',
+    label: 'อ่านข่าวสารประจำวัน',
+    note: 'ตามข่าวเทคโนโลยีและเรื่องทั่วไปให้ทัน',
+  },
 ]

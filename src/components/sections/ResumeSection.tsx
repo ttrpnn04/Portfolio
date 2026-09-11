@@ -9,7 +9,6 @@ import {
 import type { SkillList } from '../../types/content'
 import Section from '../layout/Section'
 import SectionHeader from '../layout/SectionHeader'
-import Chip from '../ui/Chip'
 import ColumnTitle from '../ui/ColumnTitle'
 import Icon from '../ui/Icon'
 import SkillBar from '../ui/SkillBar'
@@ -17,11 +16,11 @@ import TimelineEntry from '../ui/TimelineEntry'
 
 function BulletList({ list }: { list: SkillList }) {
   return (
-    <ul className="mt-4 space-y-2">
+    <ul className="mt-4 space-y-2.5">
       {list.items.map((item) => (
         <li
           key={item}
-          className="text-fg-muted flex gap-2 text-xs leading-relaxed"
+          className="text-fg-muted flex gap-2 text-sm leading-relaxed"
         >
           <span aria-hidden="true" className="text-brand-400">
             &bull;
@@ -118,13 +117,22 @@ export default function ResumeSection() {
 
             <div>
               <ColumnTitle>Hobbies &amp; Interests</ColumnTitle>
-              <ul className="mt-4 flex flex-wrap gap-2">
+              <ul className="mt-4 space-y-3">
                 {hobbies.map((hobby) => (
-                  <li key={hobby.id}>
-                    <Chip>
-                      <Icon name={hobby.icon} className="mr-1.5 size-3.5" />
-                      {hobby.label}
-                    </Chip>
+                  <li key={hobby.id} className="flex gap-3">
+                    <span className="border-line bg-fill text-brand-300 mt-0.5 inline-flex size-8 shrink-0 items-center justify-center rounded-lg border">
+                      <Icon name={hobby.icon} className="size-3.5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-fg text-sm font-medium">
+                        {hobby.label}
+                      </p>
+                      {hobby.note && (
+                        <p className="text-fg-muted mt-0.5 text-xs leading-relaxed">
+                          {hobby.note}
+                        </p>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>

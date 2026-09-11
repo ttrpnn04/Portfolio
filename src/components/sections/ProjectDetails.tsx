@@ -73,6 +73,25 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
         <DetailBlock label="บทบาทของฉัน" items={project.contributions} />
         <DetailBlock label="Outcome" text={project.outcome} />
 
+        {project.screenshots.length > 0 && (
+          <div>
+            <h4 className="text-fg-subtle text-xs font-semibold tracking-wider uppercase">
+              Screenshots
+            </h4>
+            <ul className="mt-2 grid gap-2 sm:grid-cols-2">
+              {project.screenshots.map((shot) => (
+                <li key={shot.src}>
+                  <img
+                    src={shot.src}
+                    alt={shot.alt}
+                    className="border-line w-full rounded-lg border object-cover object-top"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div>
           <h4 className="text-fg-subtle text-xs font-semibold tracking-wider uppercase">
             Tech Stack

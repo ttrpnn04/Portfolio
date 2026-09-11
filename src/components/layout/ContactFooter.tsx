@@ -19,7 +19,7 @@ export default function ContactFooter() {
           {contactNote}
         </p>
 
-        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {contactLinks.map((link) => {
             const toneClasses = link.primary
               ? 'border-brand-500 bg-brand-600 text-white'
@@ -54,9 +54,22 @@ export default function ContactFooter() {
                   <a
                     href={link.href}
                     target={
-                      link.href.startsWith('mailto:') ? undefined : '_blank'
+                      link.href.startsWith('mailto:') ||
+                      link.href.endsWith('.pdf')
+                        ? undefined
+                        : '_blank'
                     }
-                    rel="noopener noreferrer"
+                    rel={
+                      link.href.startsWith('mailto:') ||
+                      link.href.endsWith('.pdf')
+                        ? undefined
+                        : 'noopener noreferrer'
+                    }
+                    download={
+                      link.href.endsWith('.pdf')
+                        ? 'Teeraphan-Thienpromthong-CV.pdf'
+                        : undefined
+                    }
                     className={`${itemClasses} ${toneClasses} ${
                       link.primary
                         ? 'hover:bg-brand-700'

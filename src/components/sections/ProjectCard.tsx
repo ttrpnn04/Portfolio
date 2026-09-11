@@ -2,6 +2,7 @@ import type { Project } from '../../types/content'
 import Chip from '../ui/Chip'
 import Icon from '../ui/Icon'
 import Photo from '../ui/Photo'
+import ProjectCover from './ProjectCover'
 
 /** จำนวน tech ที่โชว์บนการ์ด ที่เหลือสรุปเป็น +N แล้วไปดูเต็มใน modal */
 const VISIBLE_TECH = 4
@@ -35,11 +36,21 @@ export default function ProjectCard({
        * ใบเด่นวางภาพเป็น grid item ตรง ๆ แล้วสั่ง h-full ภาพจึงสูงเท่าคอลัมน์
        * ข้อความเสมอ ไม่ว่าเนื้อหาจะยาวแค่ไหน
        */}
-      <Photo
-        src={project.imageSrc}
-        alt={project.imageAlt}
-        className={`aspect-video w-full ${isWide ? 'md:aspect-auto md:h-full' : ''}`}
-      />
+      {project.imageSrc ? (
+        <Photo
+          src={project.imageSrc}
+          alt={project.imageAlt}
+          className={`aspect-video w-full object-top ${isWide ? 'md:aspect-auto md:h-full' : ''}`}
+        />
+      ) : (
+        <ProjectCover
+          title={project.coverTitle ?? project.title}
+          kicker={project.coverKicker ?? 'Project'}
+          icon={project.coverIcon ?? 'code'}
+          alt={project.imageAlt}
+          className={`aspect-video w-full ${isWide ? 'md:aspect-auto md:h-full' : ''}`}
+        />
+      )}
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <p className="text-brand-300 text-2xs font-semibold tracking-[0.2em] uppercase">

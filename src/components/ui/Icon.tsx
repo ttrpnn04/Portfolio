@@ -71,6 +71,14 @@ const paths: Record<IconName, ReactNode> = {
     </>
   ),
   dumbbell: <path d="M6 8v8M18 8v8M4 10v4M20 10v4M6 12h12" />,
+  message: <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />,
+  utensils: (
+    <>
+      <path d="M3 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2" />
+      <path d="M7 2v20" />
+      <path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zM21 15v7" />
+    </>
+  ),
 }
 
 interface IconProps {

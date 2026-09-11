@@ -20,6 +20,8 @@ export type IconName =
   | 'plane'
   | 'camera'
   | 'dumbbell'
+  | 'message'
+  | 'utensils'
 
 export interface Hero {
   /** แยกชื่อ-นามสกุลเพราะหน้าแรกวางคนละบรรทัดคนละน้ำหนักฟอนต์ */
@@ -88,11 +90,18 @@ export interface Hobby {
   id: string
   icon: IconName
   label: string
+  /** ประโยคสั้น ๆ ใต้ชื่อ ถ้าไม่มีจะโชว์แค่ป้าย */
+  note?: string
 }
 
 export interface ProjectLink {
   label: string
   href: string
+}
+
+export interface ProjectScreenshot {
+  src: string
+  alt: string
 }
 
 export interface Project {
@@ -113,6 +122,12 @@ export interface Project {
   links: ProjectLink[]
   imageSrc: string | null
   imageAlt: string
+  /** ปกกราฟิกเมื่อยังไม่มีสกรีนช็อต ถ้ามี imageSrc จะไม่ถูกใช้ */
+  coverTitle?: string
+  coverKicker?: string
+  coverIcon?: IconName
+  /** ภาพหน้าจอใน modal ถ้าไม่มีให้เว้นว่าง หัวข้อแกลเลอรีจะไม่ถูกเรนเดอร์ */
+  screenshots: ProjectScreenshot[]
 }
 
 export type ExperienceKind = 'education' | 'internship' | 'activity'
